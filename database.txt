@@ -1,1 +1,1 @@
-create database
+create database expense
