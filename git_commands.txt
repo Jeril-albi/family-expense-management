@@ -1,0 +1,12 @@
+git init ( for 1 time only)
+
+git branch your_name
+git checkout your_name
+
+----------------------------
+
+git commit -m "your comment"
+git remote add github link     ( 1 time )
+git push github your_name
+
+
