@@ -4,7 +4,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- css -->
     <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/head/chart.css">
     <title>Family Head</title>
+    <?php
+    require 'connection.php';
+
+    $t_exp_query = "select sum()"    
+    ?>
 </head>
 <body>
     <div class="side-menu">
@@ -48,5 +54,33 @@
                 </div>
         </div>
     </div>
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+            legend: 'none',
+            textStyle:{color: '#FFF'},
+          title: 'My Daily Activities',
+          backgroundColor: '#12263f',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script> -->
 </body>
 </html>
