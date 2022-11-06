@@ -17,10 +17,14 @@ a{
 .logo-box{
     height: 110px;
     width: 110px;
-    background: url("/presentaion/images/logo.png") center no-repeat;
-    background-size: contain;
+    background-image: url("images/logo.png");
     position: relative;
     margin: 1rem auto 0 auto; 
+}
+
+.img-logo{
+    height: 110px;
+    width: 110px;
 }
 
 .name-box{
@@ -96,7 +100,7 @@ a{
 }
 
 .title-box{
-    width: 20rem;
+    width: 10rem;
     height: 3rem;
     font-size: 23px;
     color: white;
@@ -104,80 +108,30 @@ a{
     margin-top: 4rem;
 }
 
-.expense-box{
-    width: 100%;
-    height: calc(100% - 5rem);
-    overflow-y: scroll;
-}
-
-.expense-box::-webkit-scrollbar{
-    width: 0;
-}
-
-.expense-tile{
-    width: 90%;
-    height: 90px;
-    margin: 1rem 0;
-    padding: 10px 0 10px 10px;
-    border-radius: 7px;
-    color: white;
+.title-f-text{
+    font-size: 12px;
     font-weight: bold;
-    line-height: 30px;
-    font-size: 20px;
-    background-color: #254c7c;
+    color: gray;
 }
 
-.expense-mem-name{
-    display: block;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.expense-type{
-    float: left;
-}
-
-.expense-side-box{
-    display: flex;
+.top-card-box{
+    display: flex; 
     justify-content: space-evenly;
-    height: 50px;
-    width: 350px;
-    vertical-align: middle;
-    margin-left: auto;
-    margin-right: 10px;
 }
 
-.expense-amount{
-    float: left;
-    font-size: 25px;
-}
-
-.edit-btn{
-    height: 30px;
-    width: 30px;
+.top-value-box{
+    background-color: #254c7c;
     color: white;
-    cursor: pointer;
-    border-color: white;
-    text-align: center;
-    border-style: solid;
-    border-width: 3px;
+    width: 200px;
+    height: 70px;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 10px;
+    padding: 7px 10px ;
 }
 
-.edit-btn:hover{
-    background-color:rgb(151, 151, 27);
-}
-
-.delete-btn{
-    height: 30px;
-    cursor: pointer;
-    width: 30px;
-    text-align: center;
-    color: white;
-    border-color: white;
-    border-style: solid;
-    border-width: 3px;
-}
-
-.delete-btn:hover{
-    background-color: red;
+.box-title{
+    color: #8db5e6;
+    font-size: 15px;
+    font-weight: bold;
 }

@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- css -->
-    <link rel="stylesheet" href="./member.css">
+    <link rel="stylesheet" href="./styles/member.css">
     <title>Family Head</title>
 </head>
 <body>
     <div class="side-menu">
         <div class="logo-box"></div>
         <div class="name-box">
-            <span class="user_type">Family Head</span>
-            <span class="user_name">Name</span>
-            <span class="family_name">Family Name</span>
+            <span class="user_type">ADMIN</span>
         </div>
-        <a href="../dashboard/dashboard.html"><div class="side-options"><i class="fa fa-home"></i> Dashboard</div></a>
-        <a href="../expense/expense.html"><div class="side-options"><i class="fa fa-dollar"></i> Expenses</div></a>
-        <a href="../add member/add_member.html"><div class="side-options"><i class="fa fa-file-text"></i> Add Member</div></a>
-        <a href="../member/member.html"><div class="side-options active"><i class="fa fa-user"></i> Members</div></a>
+        <a href="admin_dashboard.php"><div class="side-options "><i class="fa fa-home"></i> Dashboard</div></a>
+        <a href="admin_add_family.php"><div class="side-options "><i class="fa fa-file-text"></i> Add Family</div></a>
+        <a href="admin_familys.php"><div class="side-options active"><i class="fa fa-user"></i> Families</div></a>
         <div class="side-options"><i class="fa fa-sign-out"></i> Sign Out</div>
-        <div class="side-btn"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Expense</div>
         <div class="side-btn" style="background-color: rgb(6, 43, 122);;"> <i class="fa fa-download" aria-hidden="true"></i> &nbsp; Download Report</div>
     </div>
     <div class="main-section">
@@ -35,7 +27,7 @@
                 <div class="expense-tile">
                     <span class="expense-type">Jeril</span>
                     <div class="expense-side-box">
-                        <span class="expense-amount">Total Amount: 487</span>
+                        <span class="expense-amount">Total Expense: 487</span>
                     </div>
                 </div>
                 <div class="expense-tile"></div>

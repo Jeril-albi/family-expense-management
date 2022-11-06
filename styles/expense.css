@@ -17,7 +17,7 @@ a{
 .logo-box{
     height: 110px;
     width: 110px;
-    background: url("/presentaion/images/logo.png") center no-repeat;
+    background: url("./images/logo.png") center no-repeat;
     background-size: contain;
     position: relative;
     margin: 1rem auto 0 auto; 
@@ -116,7 +116,7 @@ a{
 
 .expense-tile{
     width: 90%;
-    height: 50px;
+    height: 90px;
     margin: 1rem 0;
     padding: 10px 0 10px 10px;
     border-radius: 7px;
@@ -149,7 +149,7 @@ a{
 
 .expense-amount{
     float: left;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .edit-btn{
