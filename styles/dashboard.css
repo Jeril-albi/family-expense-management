@@ -1,0 +1,137 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.side-menu{
+    background-color: #254c7c;
+    width: 300px;
+    height: 100vh;
+    float: left;
+}
+
+.logo-box{
+    height: 110px;
+    width: 110px;
+    background-image: url("images/logo.png");
+    position: relative;
+    margin: 1rem auto 0 auto; 
+}
+
+.img-logo{
+    height: 110px;
+    width: 110px;
+}
+
+.name-box{
+    height: 4rem;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.user_type{
+    color: white;
+    font-size: 18px;
+}
+
+.user_name{
+    font-size: 16px;
+    color: grey;
+    display: block;
+}
+
+.family_name{
+    color: gray;
+    font-size: 15px;
+}
+
+.side-options{
+    padding-left: 1rem;
+    height: 3rem;
+    vertical-align: middle;
+    line-height: 3rem;
+    color: grey;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.side-options:hover{
+    color: white;
+}
+
+.active{
+    color: white;
+}
+
+.side-btn{
+    width: 90%;
+    height: 3rem;
+    background-color: #12263f;
+    border-radius: 10px;
+    margin: 2rem auto 2rem auto;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    line-height: 3rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.main-section{
+    background-color: #12263f;
+    float: left;
+    width: calc(100% - 300px);
+    height: 100vh;
+    overflow: none;
+}
+
+.main-wrapper{
+    height: 90%;
+    width: 90%;
+    margin: 1rem auto;
+}
+
+.title-box{
+    width: 10rem;
+    height: 3rem;
+    font-size: 23px;
+    color: white;
+    font-weight: bold;
+    margin-top: 4rem;
+}
+
+.title-f-text{
+    font-size: 12px;
+    font-weight: bold;
+    color: gray;
+}
+
+.top-card-box{
+    display: flex; 
+    justify-content: space-evenly;
+}
+
+.top-value-box{
+    background-color: #254c7c;
+    color: white;
+    width: 200px;
+    height: 70px;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 10px;
+    padding: 7px 10px ;
+}
+
+.box-title{
+    color: #8db5e6;
+    font-size: 15px;
+    font-weight: bold;
+}
