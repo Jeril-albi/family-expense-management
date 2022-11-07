@@ -22,8 +22,8 @@
         <a href="user_dashboard.php"><div class="side-options active"><i class="fa fa-home"></i> Dashboard</div></a>
         <a href="user_expenses.php"><div class="side-options"><i class="fa fa-dollar"></i> Expenses</div></a>
         <a href="user_members.php"><div class="side-options "><i class="fa fa-user"></i> Members</div></a>
-        <div class="side-options"><i class="fa fa-sign-out"></i> Sign Out</div>
-        <div class="side-btn"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Expense</div>
+       <a href="login.php"><div class="side-options"><i class="fa fa-sign-out"></i> Sign Out</div></a>
+       <a href="user_addexpenses.php"><div class="side-btn"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Expense</div></a> 
     </div>
     <div class="main-section">
         <div class="main-wrapper">
@@ -44,7 +44,7 @@ $dbPassword="";
 $dbName="projectphp";
 $conn=mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName);
 if(!$conn){
-   die('Could not Connect MySql Server:' .mysql_error());
+//    die('Could not Connect MySql Server:' .mysql_error());
  }
 
  //sum showing

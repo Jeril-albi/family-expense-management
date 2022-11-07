@@ -6,6 +6,25 @@
     <link rel="stylesheet" href="./styles/add_member.css">
     <link rel="stylesheet" href="./styles/admin/add_families.css">
     <title>Family Head</title>
+    <?php
+    require 'connection.php';
+    $con_file = new Connection();
+    $con = $con_file->connect();
+
+    if(isset($_POST['add'])){
+        $name = $_POST['name'];
+        $fam_name = $_POST['fam_name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $add_fam_qry = "insert into family values('".$name."','".$fam_name."','".$email."','".$password."','user')";
+        if (mysqli_query($con, $add_fam_qry)) {
+            echo "New record has been added successfully !";
+         } else {
+            echo "Error: " . $add_fam_qry . ":-" . mysqli_error($con);
+         }
+         mysqli_close($con);
+    }
+    ?>
 </head>
 <body>
     <div class="side-menu">
@@ -16,27 +35,27 @@
         <a href="admin_dashboard.php"><div class="side-options"><i class="fa fa-home"></i> Dashboard</div></a>
         <a href="admin_add_family.php"><div class="side-options active"><i class="fa fa-file-text"></i> Add Family</div></a>
         <a href="admin_familys.php"><div class="side-options "><i class="fa fa-user"></i> Families</div></a>
-        <div class="side-options"><i class="fa fa-sign-out"></i> Sign Out</div>
+        <a href="login.php"><div class="side-options"><i class="fa fa-sign-out"></i> Sign Out</div></a>
         <div class="side-btn" style="background-color: rgb(6, 43, 122);;"> <i class="fa fa-download" aria-hidden="true"></i> &nbsp; Download Report</div>
     </div>
     <div class="main-section">
         <div class="main-wrapper">
-            <form action="" method="post">
+            <form method="post">
             <div class="form">
         <h1>Add Family</h1>
         <div class="content">
-        <input type="text" placeholder="FAMILY NAME">
+        <input type="text" name="fam_name" placeholder="FAMILY NAME">
     </div>
     <div class="content">
-    <input type="text" placeholder="NAME">
+    <input type="text" name="name" placeholder="NAME">
 </div>
 <div class="content">
-<input type="email" placeholder="Email">
+<input type="text" name="email" placeholder="Email">
 </div>
 <div class="content">
-<input type="password" placeholder="PASSWORD">
+<input type="password" name="password" placeholder="PASSWORD">
 </div>
-<input type="submit"  class="btn" value="ADD">
+<input type="submit" name="add"  class="btn" value="ADD">
 </div>
             </form>
         
