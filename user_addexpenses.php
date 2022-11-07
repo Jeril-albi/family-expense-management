@@ -27,13 +27,13 @@
 <div class="container">
 
 <header>
-        <h1 id='title'>Add Expenses</h1>
+        <h1 id='title' >Add Expenses</h1>
        
     </header>
 
-<!--this is user expense insertion form-->
+ <!--this is user expense insertion form-->
     
-    <form id='insertform' action="user_addexpenses" method="POST">
+    <form id='insertform' action="user_addexpenses.php" method="POST">
     <div class='form-input'>
             <label id='name-label'>Username</label>
             <input type='text' id='name' placeholder='jhon' class='form-input-size' required name="uname" />
