@@ -5,10 +5,21 @@
     <!-- css -->
     <link rel="stylesheet" href="./styles/expense.css">
     <title>Family Head</title>
+    <?php
+    require 'connection.php';
+
+    $expences_qry = "select * from expense";
+
+    $con_file = new Connection();
+    $con = $con_file->connect();
+    $exp_qry_result = mysqli_query($con,$expences_qry);
+
+    
+    ?>
 </head>
 <body>
     <div class="side-menu">
-        <div class="logo-box"></div>
+        <div class="logo-box" style="background-image: url('logo.png');"></div>
         <div class="name-box">
             <span class="user_type">Family Head</span>
             <span class="user_name">Name</span>
@@ -27,29 +38,40 @@
             <div class="title-box">
                 <span>Expenses of Family Members</span>
             </div>
-            <div class="expense-box">
-                <div class="expense-tile">
-                    <span class="expense-mem-name">Jeril</span>
-                    <span class="expense-type">College Fees</span>
+            <form method="POST">
+            <div class="expense-box" >
+                <?php 
+                
+                while($exp_qry_row = mysqli_fetch_array($exp_qry_result)){
+                    $index = 0;
+                    if(isset($_POST['delete_exp'])){
+                        // $editQuery = "delete from expense where name='".$exp_qry_row['name']."' and exp_type='".$exp_qry_row['exp_type']."' and exp_amount=".$exp_qry_row['exp_amount']."";
+                        // mysqli_query($con,$editQuery);
+                        echo " ".$exp_qry_row[$index]['name']." ".$exp_qry_row['exp_type']."".$exp_qry_row['exp_amount']."";
+                        $_POST['delete_exp'] = null;
+                    }
+                    echo 
+                    '
+                    <div class="expense-tile">
+                    <span class="expense-mem-name">'.$exp_qry_row['name'].'</span>
+                    <span class="expense-type">'.$exp_qry_row['exp_type'].'</span>
                     <div class="expense-side-box">
-                        <span class="expense-amount">Amount: 487</span>
-                        <div class="edit-btn">
-                            <i class="fa fa-pencil"></i>
-                        </div>
-                        <div class="delete-btn">
-                            <i class="fa fa-trash"></i>
-                        </div>
+                        <span class="expense-amount">Amount: '.$exp_qry_row['exp_amount'].'</span>
+                        <button type="submit" id="edit_exp" class="edit-btn" title="Edit" style="background-color: #254c7c;">
+                        <i class="fa fa-pencil"></i>
+                        </button>
+                        <button type="submit" name="delete_exp" class="delete-btn" title="Delete" style="background-color: #254c7c;">
+                        <i class="fa fa-trash"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
+                    ';
+                    $index++;
+                }
+                ?>
+                
             </div>
+            </form>
         </div>
     </div>
 </body>

@@ -5,6 +5,15 @@
     <!-- css -->
     <link rel="stylesheet" href="./styles/member.css">
     <title>Family Head</title>
+    <?php
+    require 'connection.php';
+
+    $member_qry = "SELECT name from member WHERE member.head_name = 'dad' and member.fam_name ='anfield' ";
+
+    $con_file = new Connection();
+    $con = $con_file->connect();
+    $member_qry_result = mysqli_query($con,$member_qry);
+    ?>
 </head>
 <body>
     <div class="side-menu">
@@ -28,21 +37,22 @@
                 <span>Family Members</span>
             </div>
             <div class="expense-box">
-                <div class="expense-tile">
-                    <span class="expense-type">Jeril</span>
+                <?php
+                while($members = mysqli_fetch_assoc($member_qry_result)){
+                    echo 
+                    '
+                    <div class="expense-tile">
+                    <span class="expense-type">'.$members['name'].'</span>
                     <div class="expense-side-box">
-                        <span class="expense-amount">Total Expense: 487</span>
-                        <div class="edit-btn">
-                            <i class="fa fa-pencil"></i>
-                        </div>
+                        
                         <div class="delete-btn">
                             <i class="fa fa-trash"></i>
                         </div>
                     </div>
                 </div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
-                <div class="expense-tile"></div>
+                    ';
+                }
+                ?>
             </div>
         </div>
     </div>

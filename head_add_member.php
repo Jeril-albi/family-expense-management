@@ -6,6 +6,25 @@
     <link rel="stylesheet" href="./styles/add_member.css">
     <link rel="stylesheet" href="./styles/head/add_members_new.css">
     <title>Family Head</title>
+    <?php
+    require 'connection.php';
+    $con_file = new Connection();
+    $con = $con_file->connect();
+
+    if(isset($_POST['add_mem'])){
+      $name = $_POST['name'];
+      $email = $_POST['name'];
+      $password = $_POST['password'];
+      $mem_add_qry = "insert into member values('".$name."','Dad','Anfield','".$email."','".$password."')";
+      if (mysqli_query($con, $mem_add_qry)) {
+        echo "New record has been added successfully !";
+     } else {
+        echo "Error: " . $mem_add_qry . ":-" . mysqli_error($con);
+     }
+     mysqli_close($con);
+    }
+
+    ?>
 </head>
 <body>
     <div class="side-menu">
@@ -28,20 +47,20 @@
         <div class="container">
     <span class="title">Add Members</span>
     <div class="content">
-      <form action="#">
+      <form method="POST">
         <div class="user-details">
           <div class="input-box">
-            <input type="text" placeholder="Enter your name" required>
+            <input type="text" name="name" placeholder="Enter your name" required>
           </div>
           <div class="input-box">
-            <input type="email" placeholder="Enter your email" required>
+            <input type="email" name="email" placeholder="Enter your email" required>
           </div>
           <div class="input-box">
-            <input type="password" placeholder="Enter your password" required>
+            <input type="password" name="password" placeholder="Enter your password" required>
           </div>
         </div>
         <div class="button">
-          <input type="submit" value="MoveOn">
+          <input type="submit" name="add_mem" value="ADD">
         </div>
       </form>
     </div>

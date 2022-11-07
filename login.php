@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body, html {
   height: 100%;
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -14,11 +15,8 @@ body, html {
 
 .bg-img {
   /* The image used */
-  background-image: url("../image/fm.jpeg");
-
-  min-height: 650px;
-
-  /* Center and scale the image nicely */
+  background-image: url("login.jpeg");
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -27,9 +25,10 @@ body, html {
 
 /* Add styles to the form container */
 .container {
-  position: absolute;
+  position: relative;
   right: 0;
-  margin: 20px;
+  top: 13rem;
+  margin: 0 auto;
   max-width: 300px;
   padding: 16px;
   background-color: white;
@@ -64,26 +63,51 @@ input[type=text]:focus, input[type=password]:focus {
   opacity: 1;
 }
 </style>
+<?php
+   require 'connection.php';
+
+   $con_file = new Connection();
+   $con = $con_file->connect();
+
+   if(isset($_POST['login'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if($email == 'admin' && $password == 'admin@123'){
+      echo "admin";
+      header("location: admin_dashboard.php");
+    }
+
+    $member_qry = "select user_type from member where email='".$email."'and password='".$password."'";
+    $head_qry = "select * from member where email='".$email."'and password='".$password."'";
+
+    $mem_result = mysqli_query($con,$member_qry);
+
+    if(mysqli_num_rows($mem_result)>0){
+      $res = mysqli_fetch_assoc($mem_result);
+      if($res['user_type'] == 'member' ){
+        header("location: user_dashboard.php");
+      }
+    }
+
+   }
+?>
 </head>
 <body>
 
-<h2><bold>WELCOME BACK</bold></h2>
-
 <div class="bg-img">
-  <form action="/action_page.php" class="container">
+  <form method="POST" class="container">
     <h1>Login</h1>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="password" required>
 
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" name="login" class="btn">Login</button>
   </form>
 </div>
-
-<p>This example creates a form on a responsive image. Try to resize the browser window to see how it always will cover the whole width of the screen, and that it scales nicely on all screen sizes.</p>
 
 </body>
 </html>

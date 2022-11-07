@@ -17,7 +17,7 @@ a{
 .logo-box{
     height: 110px;
     width: 110px;
-    background: url("./images/logo.png") center no-repeat;
+    background: url("logo.png") center no-repeat;
     background-size: contain;
     position: relative;
     margin: 1rem auto 0 auto; 
@@ -161,6 +161,7 @@ a{
     text-align: center;
     border-style: solid;
     border-width: 3px;
+    background-color: #254c7c;
 }
 
 .edit-btn:hover{
@@ -170,12 +171,13 @@ a{
 .delete-btn{
     height: 30px;
     cursor: pointer;
-    width: 30px;
+    width: 50px;
     text-align: center;
     color: white;
     border-color: white;
     border-style: solid;
     border-width: 3px;
+    background-color: #254c7c;
 }
 
 .delete-btn:hover{

@@ -9,7 +9,19 @@
     <?php
     require 'connection.php';
 
-    $t_exp_query = "select sum()"    
+    $t_exp_query = "select sum(exp_amount) as sum from expense";
+    $max_exp_query = "select name, max(exp_amount) as max_amount from expense group by name";
+
+    $con_file = new Connection();
+    $con = $con_file->connect();
+    $exp_qry_result = mysqli_query($con,$t_exp_query);
+    $max_exp_qry_result = mysqli_query($con,$max_exp_query);
+
+    $exp_qry_row = mysqli_fetch_assoc($exp_qry_result);
+
+    $max_exp = mysqli_fetch_assoc($max_exp_qry_result);
+    $totalExp = $exp_qry_row['sum'];
+    mysqli_close($con);
     ?>
 </head>
 <body>
@@ -38,7 +50,13 @@
             <div class="top-box" style="margin-top: 2rem; display: flex; justify-content: space-evenly;">
                 <div class="top-value-box">
                     <span class="box-title">TOTAL EXPENSE</span> <br>
-                    <span>$ 45031</span>
+                    <?php 
+                    if(empty($totalExp)){
+                        echo"<span> 0 </span>";
+                    }else{
+                        echo"<span>".$totalExp."</span>" ;
+                    }
+                    ?>
                     <i class="fa fa-usd" style="margin-left: 4rem; color: aquamarine;" aria-hidden="true"></i>
                 </div>
                 <div class="top-value-box">
@@ -48,8 +66,13 @@
                 </div>
                 <div class="top-value-box">
                     <span class="box-title">HIGHEST EXPENSE</span> <br>
-                    <span> 9643</span>
-                    <i class="fa fa-usd" style="margin-left: 5rem; color: aquamarine;" aria-hidden="true"></i>
+                    <?php 
+                    if(empty($max_exp['max_amount'])){
+                        echo"<span> 0 </span>";
+                    }else{
+                        echo"<span>".$max_exp['name']." ( ".$max_exp['max_amount']." )</span>";
+                    }
+                     ?>
                 </div>
                 </div>
         </div>
