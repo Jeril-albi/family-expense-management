@@ -12,7 +12,11 @@
         </div>
         <div class="name-box">
             <span class="user_type">Family Member</span>
-            <span class="user_name">Name</span>
+            <span class="user_name" name="uname" method="POST" action="user_dashboard.php">
+                <form name="uname" method="POST" action="user_dashboard.php">
+            Jhon
+        </form>
+    </span>
             <span class="family_name">Family Name</span>
         </div>
         <a href="user_dashboard.php"><div class="side-options active"><i class="fa fa-home"></i> Dashboard</div></a>
@@ -30,7 +34,33 @@
             <div class="top-box" style="margin-top: 2rem; display: flex; justify-content: space-evenly;">
                 <div class="top-value-box">
                     <span class="box-title">TOTAL EXPENSE</span> <br>
-                    <span>$ 45031</span>
+                    <span>
+
+                    <?php
+//db connection
+$dbServername="localhost";
+$dbUsername="root";
+$dbPassword="";
+$dbName="projectphp";
+$conn=mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName);
+if(!$conn){
+   die('Could not Connect MySql Server:' .mysql_error());
+ }
+
+ //sum showing
+
+$to_exp=$_POST['uname'];  
+
+echo $sql="SELECT SUM(amout) as $to_exp FROM member WHERE memId='jhon'";
+ if ( mysqli_query($conn, $sql)) {
+   echo $to_exp;
+ } else {
+   echo "Error: " . $sql . ":-" . mysqli_error($conn);
+ }
+ mysqli_close($conn);
+ ?>
+
+</span>
                     <i class="fa fa-usd" style="margin-left: 4rem; color: aquamarine;" aria-hidden="true"></i>
                 </div>
                 <div class="top-value-box">
