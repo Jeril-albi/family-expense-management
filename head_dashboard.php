@@ -10,24 +10,29 @@
     require 'connection.php';
 
     $t_exp_query = "select sum(exp_amount) as sum from expense";
-    $max_exp_query = "select name, max(exp_amount) as max_amount from expense group by name";
+    $no_mem_qry = "select count(name) as no_mem from member";
+    $max_exp_query = "SELECT name,exp_amount FROM expense WHERE exp_amount = (SELECT MAX(exp_amount) from expense)";
 
     $con_file = new Connection();
     $con = $con_file->connect();
+
     $exp_qry_result = mysqli_query($con,$t_exp_query);
     $max_exp_qry_result = mysqli_query($con,$max_exp_query);
+    $no_mem_qry_result = mysqli_query($con,$no_mem_qry);
 
     $exp_qry_row = mysqli_fetch_assoc($exp_qry_result);
 
     $max_exp = mysqli_fetch_assoc($max_exp_qry_result);
+    $no_mem_res = mysqli_fetch_assoc($no_mem_qry_result);
+
     $totalExp = $exp_qry_row['sum'];
+    $no_mem = $no_mem_res['no_mem'];
     mysqli_close($con);
     ?>
 </head>
 <body>
     <div class="side-menu">
-        <div class="logo-box">
-        </div>
+    <div class="logo-box" style="background: url('logo.png') center no-repeat;background-size: contain; "></div>
         <div class="name-box">
             <span class="user_type">Family Head</span>
             <span class="user_name">Name</span>
@@ -35,10 +40,10 @@
         </div>
         <a href="head_dashboard.php"><div class="side-options active"><i class="fa fa-home"></i> Dashboard</div></a>
         <a href="head_expense.php"><div class="side-options"><i class="fa fa-dollar"></i> Expenses</div></a>
-        <a href="head_add_member.php"><div class="side-options"><i class="fa fa-file-text"></i> Add Member</div></a>
+        <a href="head_add_member.php"><div class="side-options "><i class="fa fa-file-text"></i> Add Member</div></a>
         <a href="head_members.php"><div class="side-options "><i class="fa fa-user"></i> Members</div></a>
         <a href="login.php"><div class="side-options"><i class="fa fa-sign-out"></i> Sign Out</div></a>
-        <div class="side-btn"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Expense</div>
+        <a href="head_addexpense.php"><div class="side-btn"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Expense</div></a> 
         <div class="side-btn" style="background-color: rgb(6, 43, 122);;"> <i class="fa fa-download" aria-hidden="true"></i> &nbsp; Download Report</div>
     </div>
     <div class="main-section">
@@ -61,16 +66,22 @@
                 </div>
                 <div class="top-value-box">
                     <span class="box-title">NO  OF MEMBERS</span> <br>
-                    <span> 3</span>
+                    <?php 
+                    if(empty($no_mem)){
+                        echo"<span> 0 </span>";
+                    }else{
+                        echo"<span>".$no_mem."</span>" ;
+                    }
+                    ?>
                     <i class="fa fa-user" style="margin-left: 6rem; color: aquamarine;" aria-hidden="true"></i>
                 </div>
                 <div class="top-value-box">
                     <span class="box-title">HIGHEST EXPENSE</span> <br>
                     <?php 
-                    if(empty($max_exp['max_amount'])){
+                    if(empty($max_exp['exp_amount'])){
                         echo"<span> 0 </span>";
                     }else{
-                        echo"<span>".$max_exp['name']." ( ".$max_exp['max_amount']." )</span>";
+                        echo"<span>".$max_exp['name']." ( ".$max_exp['exp_amount']." )</span>";
                     }
                      ?>
                 </div>

@@ -2,6 +2,6 @@
 class Datas{
     public $usertype;
     public $name;
-    public $familyName;
+    public $fam_name;
 }
 ?>

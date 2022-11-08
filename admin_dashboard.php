@@ -7,7 +7,9 @@
     <title>Family Head</title>
     <?php
     require 'connection.php';
+    require 'datas.php';
     $con_file = new Connection();
+    $datas = new Datas();
     $con = $con_file->connect();
 
     $t_exp_query = "select sum(exp_amount) as sum from expense";
@@ -20,13 +22,12 @@
     $fam_no_qry_row = mysqli_fetch_assoc($fam_no_qry_result);
 
     $totalExp = $exp_qry_row['sum'];
-    $famNo = $fam_no_qry_row['f_no']
+    $famNo = $fam_no_qry_row['f_no'];
     ?>
 </head>
 <body>
     <div class="side-menu">
-        <div class="logo-box">
-        </div>
+    <div class="logo-box" style="background: url('logo.png') center no-repeat;background-size: contain; "></div>
         <div class="name-box">
             <span class="user_type">ADMIN</span>
         </div>
@@ -71,6 +72,9 @@
                     <i class="fa fa-usd" style="margin-left: 5rem; color: aquamarine;" aria-hidden="true"></i>
                 </div>
                 </div>
+                <?php
+                echo $datas->usertype." hello";
+                ?>
         </div>
     </div>
 </body>

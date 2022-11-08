@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="side-menu">
-        <div class="logo-box"></div>
+    <div class="logo-box" style="background-image: url('logo.png');"></div>
         <div class="name-box">
-            <span class="user_type">Family Head</span>
+            <span class="user_type">Family Member</span>
             <span class="user_name">Name</span>
             <span class="family_name">Family Name</span>
         </div>

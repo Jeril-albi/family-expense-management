@@ -30,7 +30,7 @@
         <a href="head_add_member.php"><div class="side-options"><i class="fa fa-file-text"></i> Add Member</div></a>
         <a href="head_members.php"><div class="side-options "><i class="fa fa-user"></i> Members</div></a>
         <a href="login.php"><div class="side-options"><i class="fa fa-sign-out"></i> Sign Out</div></a>
-        <div class="side-btn"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Expense</div>
+        <a href="head_addexpense.php"><div class="side-btn"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Expense</div></a> 
         <div class="side-btn" style="background-color: rgb(6, 43, 122);;"> <i class="fa fa-download" aria-hidden="true"></i> &nbsp; Download Report</div>
     </div>
     <div class="main-section">

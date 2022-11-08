@@ -4,19 +4,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- css -->
     <link rel="stylesheet" href="./styles/dashboard.css">
-    <title>Family Head</title>
+    <title>Family Member</title>
+    <?php
+    require 'connection.php';
+    $con_file = new Connection();
+    $con = $con_file->connect();
+
+    $t_exp_query = "select sum(exp_amount) as sum from expense where name";
+    $no_mem_qry = "select count(name) as no_mem from member";
+    $max_exp_query = "SELECT name,exp_amount FROM expense WHERE exp_amount = (SELECT MAX(exp_amount) from expense)";
+
+    $exp_qry_result = mysqli_query($con,$t_exp_query);
+    $max_exp_qry_result = mysqli_query($con,$max_exp_query);
+    $no_mem_qry_result = mysqli_query($con,$no_mem_qry);
+
+    $exp_qry_row = mysqli_fetch_assoc($exp_qry_result);
+
+    $max_exp = mysqli_fetch_assoc($max_exp_qry_result);
+    $no_mem_res = mysqli_fetch_assoc($no_mem_qry_result);
+
+    $totalExp = $exp_qry_row['sum'];
+    $no_mem = $no_mem_res['no_mem'];
+    mysqli_close($con);
+
+    ?>
 </head>
 <body>
     <div class="side-menu">
-        <div class="logo-box">
-        </div>
+    <div class="logo-box" style="background: url('logo.png') center no-repeat;background-size: contain; "></div>
         <div class="name-box">
-            <span class="user_type">Family Member</span>
-            <span class="user_name" name="uname" method="POST" action="user_dashboard.php">
-                <form name="uname" method="POST" action="user_dashboard.php">
-            Jhon
-        </form>
-    </span>
+            <span class="user_type">Family Head</span>
+            <span class="user_name">Name</span>
             <span class="family_name">Family Name</span>
         </div>
         <a href="user_dashboard.php"><div class="side-options active"><i class="fa fa-home"></i> Dashboard</div></a>
@@ -35,32 +53,7 @@
                 <div class="top-value-box">
                     <span class="box-title">TOTAL EXPENSE</span> <br>
                     <span>
-
-                    <?php
-//db connection
-$dbServername="localhost";
-$dbUsername="root";
-$dbPassword="";
-$dbName="projectphp";
-$conn=mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName);
-if(!$conn){
-//    die('Could not Connect MySql Server:' .mysql_error());
- }
-
- //sum showing
-
-$to_exp=$_POST['uname'];  
-
-echo $sql="SELECT SUM(amout) as $to_exp FROM member WHERE memId='jhon'";
- if ( mysqli_query($conn, $sql)) {
-   echo $to_exp;
- } else {
-   echo "Error: " . $sql . ":-" . mysqli_error($conn);
- }
- mysqli_close($conn);
- ?>
-
-</span>
+                    </span>
                     <i class="fa fa-usd" style="margin-left: 4rem; color: aquamarine;" aria-hidden="true"></i>
                 </div>
                 <div class="top-value-box">

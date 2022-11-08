@@ -65,8 +65,10 @@ input[type=text]:focus, input[type=password]:focus {
 </style>
 <?php
    require 'connection.php';
+   require 'datas.php';
 
    $con_file = new Connection();
+   $datas = new Datas();
    $con = $con_file->connect();
 
    if(isset($_POST['login'])){
@@ -74,19 +76,33 @@ input[type=text]:focus, input[type=password]:focus {
     $password = $_POST['password'];
 
     if($email == 'admin' && $password == 'admin@123'){
-      echo "admin";
+      $datas->usertype = 'admin';
       header("location: admin_dashboard.php");
     }
 
     $member_qry = "select user_type from member where email='".$email."'and password='".$password."'";
-    $head_qry = "select * from member where email='".$email."'and password='".$password."'";
+    $head_qry = "select user_type from family where email='".$email."'and password='".$password."'";
 
     $mem_result = mysqli_query($con,$member_qry);
+    $head_result = mysqli_query($con,$head_qry);
 
     if(mysqli_num_rows($mem_result)>0){
       $res = mysqli_fetch_assoc($mem_result);
       if($res['user_type'] == 'member' ){
+        $datas->usertype = "Family Member";
+        $datas->name = $res['name'];
+        $datas->familyName = $res['fam_name'];
         header("location: user_dashboard.php");
+      }
+    }
+
+    if(mysqli_num_rows($head_result)>0){
+      $res = mysqli_fetch_assoc($head_result);
+      if($res['user_type'] == 'head' ){
+        $datas->usertype = "Family Head";
+        $datas->name = $res['name'];
+        $datas->familyName = $res['fam_name'];
+        header("location: head_dashboard.php");
       }
     }
 
